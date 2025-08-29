@@ -1,4 +1,5 @@
 import tensorflow as tf
+import matplotlib.pyplot as plt
 
 # 1. CONFIGURATION
 IMG_SIZE = (224, 224)
@@ -46,8 +47,40 @@ model.summary()
 
 # 4. TRAIN THE MODEL
 print("\nStarting model training...")
-model.fit(train_ds, validation_data=val_ds, epochs=EPOCHS)
+history = model.fit(
+    train_ds,
+    validation_data=val_ds,
+    epochs=EPOCHS
+)
 
 # 5. SAVE THE MODEL
 model.save('saved_models/scoliosis_curve_classifier.keras')
 print("\nModel saved as 'scoliosis_curve_classifier.keras'")
+
+
+# --- 6. VISUALIZE TRAINING RESULTS ---
+print("Generating training history plot...")
+
+acc = history.history['accuracy']
+val_acc = history.history['val_accuracy']
+loss = history.history['loss']
+val_loss = history.history['val_loss']
+
+plt.figure(figsize=(8, 8))
+plt.subplot(2, 1, 1)
+plt.plot(acc, label='Training Accuracy')
+plt.plot(val_acc, label='Validation Accuracy')
+plt.legend(loc='lower right')
+plt.ylabel('Accuracy')
+plt.ylim([min(plt.ylim()),1])
+plt.title('Training and Validation Accuracy')
+
+plt.subplot(2, 1, 2)
+plt.plot(loss, label='Training Loss')
+plt.plot(val_loss, label='Validation Loss')
+plt.legend(loc='upper right')
+plt.ylabel('Cross Entropy Loss')
+plt.ylim([0,1.0])
+plt.title('Training and Validation Loss')
+plt.xlabel('epoch')
+plt.show()

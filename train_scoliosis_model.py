@@ -117,7 +117,6 @@ print("\nModel saved as 'scoliosis_classifier.keras'")
 
 # 9. VISUALIZE TRAINING RESULTS
 
-
 acc = history.history['accuracy']
 val_acc = history.history['val_accuracy']
 loss = history.history['loss']
