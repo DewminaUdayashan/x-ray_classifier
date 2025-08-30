@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 # 1. CONFIGURATION
 IMG_SIZE = (224, 224)
 BATCH_SIZE = 32
-DATA_DIR = 'data/main/train'
+DATA_DIR = '../data/main/train'
 EPOCHS = 15
 
 # 2. LOAD DATASET

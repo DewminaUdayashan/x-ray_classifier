@@ -7,7 +7,7 @@ import os
 # Define key parameters
 IMG_SIZE = (224, 224) # Input image size for the model
 BATCH_SIZE = 32      # Number of images to process in a batch
-DATA_DIR = 'data'    # Path to your main data folder
+DATA_DIR = '../data'  # Path to your main data folder
 EPOCHS = 15          # Number of times to train on the entire dataset
 
 # 2. LOAD AND PREPARE THE DATASET

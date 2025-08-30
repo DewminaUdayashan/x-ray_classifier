@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 IMG_SIZE = (224, 224)
 BATCH_SIZE = 32
 
-DATA_DIR = 'data/train/scoliosis'
+DATA_DIR = '../data/train/scoliosis'
 EPOCHS = 15
 
 # 2. LOAD DATASET
