@@ -58,15 +58,19 @@ async def root():
 
 
 @app.post("/classify_image_type", summary="Classify Image: Spinal X-Ray, Other X-Ray, or Not an X-Ray")
-async def classify_image_type(file: UploadFile = File(...)):
+async def classify_image_type(
+        file: UploadFile = File(...),
+        enable_cropping: bool = Form(True, description="Set to `false` to disable central spine cropping.")
+):
     """
     Endpoint 1: Validates the input image.
     - **Input**: Any image file.
+    - **Parameter**: `enable_cropping` (boolean, default: True).
     - **Output**: Classification as 'spinal_xray', 'other_xray', or 'not_xray'.
     """
     image_bytes = await file.read()
     # For this model, we use the full image without cropping
-    processed_image = preprocess_image(image_bytes, resize_only=True)
+    processed_image = preprocess_image(image_bytes, resize_only=not enable_cropping)
 
     prediction = MODEL_IMG_TYPE.predict(processed_image)
 
